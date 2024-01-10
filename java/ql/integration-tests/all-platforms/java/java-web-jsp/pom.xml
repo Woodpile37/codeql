@@ -14,8 +14,8 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jetty-version>11.0.17</jetty-version>
-        <spring.version>5.2.22.RELEASE</spring.version>
+        <jetty-version>9.4.51.v20230217</jetty-version>
+        <spring.version>6.0.11</spring.version>
         <!--<sonar.language></sonar.language>-->
     </properties>
 
