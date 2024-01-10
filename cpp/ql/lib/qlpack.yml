@@ -1,5 +1,5 @@
 name: codeql/cpp-all
-version: 0.12.3
+version: 0.9.3
 groups: cpp
 dbscheme: semmlecode.cpp.dbscheme
 extractor: cpp
@@ -7,7 +7,6 @@ library: true
 upgrades: upgrades
 dependencies:
   codeql/dataflow: ${workspace}
-  codeql/rangeanalysis: ${workspace}
   codeql/ssa: ${workspace}
   codeql/tutorial: ${workspace}
   codeql/util: ${workspace}
