@@ -19,7 +19,8 @@ module Kernel {
    */
   class KernelMethodCall extends DataFlow::CallNode {
     KernelMethodCall() {
-      this = API::getTopLevelMember("Kernel").getAMethodCall(_)
+      // Match Kernel calls using local flow, to avoid finding singleton calls on subclasses
+      this = DataFlow::getConstant("Kernel").getAMethodCall(_)
       or
       this.asExpr().getExpr() instanceof UnknownMethodCall and
       (
@@ -176,7 +177,7 @@ module Kernel {
   private class TapSummary extends SimpleSummarizedCallable {
     TapSummary() { this = "tap" }
 
-    override predicate propagatesFlowExt(string input, string output, boolean preservesValue) {
+    override predicate propagatesFlow(string input, string output, boolean preservesValue) {
       input = "Argument[self]" and
       output = ["ReturnValue", "Argument[block].Parameter[0]"] and
       preservesValue = true
@@ -218,7 +219,7 @@ module Kernel {
       )
     }
 
-    override predicate propagatesFlowExt(string input, string output, boolean preservesValue) {
+    override predicate propagatesFlow(string input, string output, boolean preservesValue) {
       (
         // already an array
         input = "Argument[0].WithElement[0..]" and
